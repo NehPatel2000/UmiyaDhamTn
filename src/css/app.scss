@@ -1,1 +1,12 @@
 // app global css in SCSS form
+.brand-primary {
+  background-color: white;
+  color: $brand-primary;
+}
+.brand-secondary {
+  background-color: $brand-primary;
+  color: white;
+}
+.brand-accent {
+  color: $brand-accent;
+}

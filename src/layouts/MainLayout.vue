@@ -1,14 +1,48 @@
 <script setup>
-import TopNavBar from 'components/TopNavBar.vue'
-import BottomNavBar from 'components/BottomNavBar.vue'
+import TopNavBar from "components/TopNavBar.vue";
+import BottomNavBar from "components/BottomNavBar.vue";
 </script>
 
 <template>
   <q-layout view="lHh lpr lFf">
     <top-nav-bar />
+
     <q-page-container>
       <router-view />
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
+      <div>asd</div>
     </q-page-container>
+
     <bottom-nav-bar />
   </q-layout>
 </template>
