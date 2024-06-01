@@ -9,38 +9,6 @@ import BottomNavBar from "components/BottomNavBar.vue";
 
     <q-page-container>
       <router-view />
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
-      <div>asd</div>
     </q-page-container>
 
     <bottom-nav-bar />

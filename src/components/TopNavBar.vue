@@ -10,12 +10,12 @@ const smallWindow = computed(() => $q.screen.lt.sm);
 const mediumWindow = computed(() => $q.screen.lt.md);
 
 const menuItems = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about-us" },
-  { label: "Upcoming Events", href: "#upcoming-events" },
-  { label: "Committee", href: "#committee" },
-  { label: "Book Event", href: "#book-event" },
-  { label: "Contact Us", href: "#contact-us" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Upcoming Events", href: "/upcoming-events" },
+  { label: "Committee", href: "/committee" },
+  { label: "Book Event", href: "/book-event" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 </script>
 
@@ -31,9 +31,9 @@ const menuItems = [
       </div>
       <div v-if="!smallWindow" class="q-pl-md overflow-hidden">
         <q-item-label class="title">SHREE UMIYA DHAM</q-item-label>
-        <q-item-label class="subtitle brand-accent"
-          >Nashville, Tennessee</q-item-label
-        >
+        <q-item-label class="subtitle brand-accent">
+          Nashville, Tennessee
+        </q-item-label>
       </div>
       <q-item
         v-if="!mediumWindow"
@@ -58,9 +58,8 @@ const menuItems = [
                   :key="index"
                   clickable
                   v-ripple
-                  tag="a"
-                  :href="item.href"
-                  s
+                  tag="router-link"
+                  :to="item.href"
                 >
                   <q-item-section>
                     {{ item.label }}
@@ -92,14 +91,13 @@ const menuItems = [
       v-if="!mediumWindow"
     >
       <div>
-        <q-btn
+        <router-link
           v-for="(item, index) in menuItems"
           :key="index"
-          flat
-          :label="item.label"
-          class="q-ma-sm"
-          :href="item.href"
-        />
+          :to="item.href"
+        >
+          <q-btn flat :label="item.label" class="q-ma-sm brand-secondary" />
+        </router-link>
       </div>
     </q-toolbar>
   </q-header>
