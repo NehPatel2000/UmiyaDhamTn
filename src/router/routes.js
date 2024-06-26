@@ -9,7 +9,10 @@ const routes = [
         path: "upcoming-events",
         component: () => import("pages/UpcomingEvents.vue"),
       },
-      { path: "committee", component: () => import("pages/Committee.vue") },
+      {
+        path: "committee",
+        component: () => import("pages/CommitteeMembers.vue"),
+      },
       {
         path: "book-event",
         component: () => import("pages/BookEvent.vue"),

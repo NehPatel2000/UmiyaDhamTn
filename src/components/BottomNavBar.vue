@@ -122,7 +122,7 @@ const numberDisplay = "(615) 364 - 6262";
   </q-toolbar>
   <q-separator color="white" size="2px"></q-separator>
   <q-toolbar class="brand-secondary justify-center">
-    <q-item>Developed by Neh Ashokkumar (Mantri) Patel</q-item>
+    <q-item>Designed & Developed by Neh Ashokkumar (Mantri) Patel</q-item>
     <q-item>© 2024 SHREE UMIYA DHAM. All rights reserved.</q-item>
   </q-toolbar>
 </template>
