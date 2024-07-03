@@ -1,0 +1,1 @@
+import{Q as e}from"./QPage.d6bd926c.js";import{G as a,H as t,I as s,K as o}from"./index.a57663d2.js";import"./render.23090be3.js";const r=o("div",null,"ada",-1),p=Object.assign({name:"AboutUs"},{__name:"AboutUsPage",setup(c){return(n,_)=>(a(),t(e,{class:"flex flex-center"},{default:s(()=>[r]),_:1}))}});export{p as default};

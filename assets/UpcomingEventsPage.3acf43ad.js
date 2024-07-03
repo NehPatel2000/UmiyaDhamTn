@@ -1,0 +1,1 @@
+import{Q as e}from"./QPage.d6bd926c.js";import{G as a,H as t,I as s,K as o}from"./index.a57663d2.js";import"./render.23090be3.js";const c=o("div",null,"upcomming",-1),l=Object.assign({name:"IndexPage"},{__name:"UpcomingEventsPage",setup(n){return(r,m)=>(a(),t(e,{class:"flex flex-center"},{default:s(()=>[c]),_:1}))}});export{l as default};

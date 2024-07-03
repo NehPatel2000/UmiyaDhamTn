@@ -1,0 +1,1 @@
+import{Q as e}from"./QPage.d6bd926c.js";import{G as t,H as o,I as a,K as s}from"./index.a57663d2.js";import"./render.23090be3.js";const n=s("div",null,"book event",-1),p=Object.assign({name:"BookEvent"},{__name:"BookEventPage",setup(r){return(c,_)=>(t(),o(e,{class:"flex flex-center"},{default:a(()=>[n]),_:1}))}});export{p as default};
