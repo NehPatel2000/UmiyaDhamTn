@@ -5,34 +5,13 @@
  * the ES6 features that are supported by your Node version. https://node.green/
  */
 
-import { defineConfig } from "quasar";
-import fs from "fs";
-import path from "path";
+// Configuration for your app
+// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-interface EnvJson {
-  [key: string]: any; // Adjust based on your JSON structure
-}
+const { configure } = require("quasar/wrappers");
 
-function loadEnvJson(env: string): EnvJson {
-  const envFile = "http-client.private.env.json";
-  const envPath = path.resolve(__dirname, "src", envFile);
-
-  try {
-    const fileContents = fs.readFileSync(envPath, "utf8");
-    const envJson = JSON.parse(fileContents)[env] || {};
-    return envJson;
-  } catch (error) {
-    console.error(`Failed to load ${envFile}:`, error);
-    return {};
-  }
-}
-
-export default defineConfig(
-  (
-    {
-      /* ctx */
-    }
-  ) => ({
+module.exports = configure(function (/* ctx */) {
+  return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
 
@@ -53,24 +32,13 @@ export default defineConfig(
       // 'themify',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+
       "roboto-font", // optional, you are not bound to it
       "material-icons", // optional, you are not bound to it
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
-      extendViteConf(viteConf) {
-        // Set publicPath if needed
-        // viteConf.base = "/";
-
-        // Add environment variables to Vite
-        const envJson = loadEnvJson(process.env.NODE_ENV || "development");
-        viteConf.define = {
-          ...viteConf.define,
-          "process.env": JSON.stringify(envJson),
-        };
-      },
-
       target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node20",
@@ -84,7 +52,7 @@ export default defineConfig(
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       publicPath: "",
-      extendViteConf(viteConf, { isServer, isClient }) {
+      extendViteConf(viteConf) {
         viteConf.base = "";
       }, // analyze: true,
       // env: {},
@@ -97,23 +65,20 @@ export default defineConfig(
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      vitePlugins: [
-        [
-          "vite-plugin-checker",
-          {
-            eslint: {
-              lintCommand: 'eslint "./**/*.{js,mjs,cjs,vue}"',
-            },
-          },
-          { server: false },
-        ],
-      ],
+      vitePlugins: [[]],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
-      open: true, // opens browser window automatically
+      proxy: {
+        "/api": {
+          target: "http://localhost:5032", // Adjust to your backend API URL
+          changeOrigin: true,
+          pathRewrite: {
+            "^/api": "",
+          },
+        },
+      },
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
@@ -166,7 +131,9 @@ export default defineConfig(
       prodPort: 3000, // The default port that the production server should use
       // (gets superseded if process.env.PORT is specified at runtime)
 
-      middlewares: ["render"], // keep this as last one
+      middlewares: [
+        "render", // keep this as last one
+      ],
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
@@ -178,7 +145,7 @@ export default defineConfig(
       useCredentialsForManifestTag: false,
       // useFilenameHashes: true,
       // extendGenerateSWOptions (cfg) {}
-      // extendInjectManifestOptions (cfg) {}
+      // extendInjectManifestOptions (cfg) {},
       // extendManifestJson (json) {}
       // extendPWACustomSWConf (esbuildConf) {}
     },
@@ -228,5 +195,5 @@ export default defineConfig(
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
     },
-  })
-);
+  };
+});

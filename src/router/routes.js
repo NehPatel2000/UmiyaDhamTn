@@ -4,29 +4,29 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
-      { path: "about-us", component: () => import("pages/AboutUs.vue") },
+      { path: "about-us", component: () => import("pages/AboutUsPage.vue") },
       {
         path: "upcoming-events",
-        component: () => import("pages/UpcomingEvents.vue"),
+        component: () => import("pages/UpcomingEventsPage.vue"),
       },
       {
         path: "committee",
-        component: () => import("pages/CommitteeMembers.vue"),
+        component: () => import("pages/CommitteeMembersPage.vue"),
       },
       {
         path: "book-event",
-        component: () => import("pages/BookEvent.vue"),
+        component: () => import("pages/BookEventPage.vue"),
       },
       {
         path: "contact-us",
-        component: () => import("pages/ContactUs.vue"),
+        component: () => import("pages/ContactUsPage.vue"),
       },
     ],
   },
   {
     // Catch all other routes and display a 404 page
     path: "/:catchAll(.*)*",
-    component: () => import("pages/ErrorNotFound.vue"),
+    component: () => import("pages/ErrorNotFoundPage.vue"),
   },
 ];
 

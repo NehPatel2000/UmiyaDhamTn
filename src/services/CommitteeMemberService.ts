@@ -1,14 +1,14 @@
 import axios from "axios";
-import CommitteeMember from "./CommitteeMember"; // Assuming CommitteeMember class is defined
+import CommitteeMember from "@/services/models/CommitteeMember";
 
-const API_URL = "http://api.example.com"; // Replace with your API base URL
+export class CommitteeMemberService {
+  private static readonly BASE_URL = "/api/CommitteeMember";
 
-export default class CommitteeMemberService {
   // Fetch all committee members
-  async getCommitteeMembers(): Promise<CommitteeMember[]> {
+  static async getCommitteeMembers(): Promise<CommitteeMember[]> {
     try {
-      const response = await axios.get(`${API_URL}/api/CommitteeMember`);
-      return response.data.map((json: any) => CommitteeMember.fromJson(json));
+      const response = await axios.get<CommitteeMember[]>(this.BASE_URL);
+      return response.data;
     } catch (error) {
       console.error("Error fetching committee members:", error);
       throw error;
@@ -16,58 +16,30 @@ export default class CommitteeMemberService {
   }
 
   // Fetch a single committee member by ID
-  async getCommitteeMember(id: string): Promise<CommitteeMember | null> {
+  static async getCommitteeMemberById(
+    id: string
+  ): Promise<CommitteeMember | null> {
     try {
-      const response = await axios.get(`${API_URL}/api/CommitteeMember/${id}`);
-      return CommitteeMember.fromJson(response.data);
+      const response = await axios.get<CommitteeMember>(
+        `${this.BASE_URL}/${id}`
+      );
+      return response.data;
     } catch (error) {
       console.error(`Error fetching committee member with ID ${id}:`, error);
       throw error;
     }
   }
 
-  // Add a new committee member
-  async addCommitteeMember(
-    committeeMember: CommitteeMember
-  ): Promise<CommitteeMember> {
-    try {
-      const response = await axios.post(
-        `${API_URL}/api/CommitteeMember`,
-        committeeMember.toJson()
-      );
-      return CommitteeMember.fromJson(response.data);
-    } catch (error) {
-      console.error("Error adding committee member:", error);
-      throw error;
-    }
-  }
-
-  // Update an existing committee member
-  async updateCommitteeMember(
-    committeeMember: CommitteeMember
-  ): Promise<CommitteeMember> {
-    try {
-      const response = await axios.put(
-        `${API_URL}/api/CommitteeMember/${committeeMember.id}`,
-        committeeMember.toJson()
-      );
-      return CommitteeMember.fromJson(response.data);
-    } catch (error) {
-      console.error(
-        `Error updating committee member with ID ${committeeMember.id}:`,
-        error
-      );
-      throw error;
-    }
-  }
-
-  // Delete a committee member by ID
-  async deleteCommitteeMember(id: string): Promise<void> {
-    try {
-      await axios.delete(`${API_URL}/api/CommitteeMember/${id}`);
-    } catch (error) {
-      console.error(`Error deleting committee member with ID ${id}:`, error);
-      throw error;
-    }
-  }
+  // Example: Fetch person details for a committee member
+  // static async fetchPersonDetails(committeeMember: CommitteeMember): Promise<void> {
+  //   if (committeeMember.personUuid && !committeeMember.person) {
+  //     try {
+  //       const person = await PersonService.getPersonByUuid(committeeMember.personUuid);
+  //       committeeMember.person = person;
+  //     } catch (error) {
+  //       console.error(`Error fetching person details for committee member ${committeeMember.id}:`, error);
+  //       throw error;
+  //     }
+  //   }
+  // }
 }

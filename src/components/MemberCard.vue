@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps } from "vue";
 const defaultProfileIcon = "src/assets/defaultProfileIcon.png";
-defineProps({
+const props = defineProps({
   name: {
     type: String,
     required: true,
@@ -28,9 +28,13 @@ defineProps({
     </q-card-section>
     <q-card-section>
       <div class="q-pa-sm text-center">
-        <div class="name">{{ name }}</div>
+        <div class="name">
+          {{ name }}
+        </div>
         <q-separator color="red" />
-        <div class="position">{{ position }}</div>
+        <div class="position">
+          {{ position }}
+        </div>
       </div>
     </q-card-section>
   </q-card>
