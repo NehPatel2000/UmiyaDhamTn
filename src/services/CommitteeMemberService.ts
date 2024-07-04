@@ -29,17 +29,4 @@ export class CommitteeMemberService {
       throw error;
     }
   }
-
-  // Example: Fetch person details for a committee member
-  // static async fetchPersonDetails(committeeMember: CommitteeMember): Promise<void> {
-  //   if (committeeMember.personUuid && !committeeMember.person) {
-  //     try {
-  //       const person = await PersonService.getPersonByUuid(committeeMember.personUuid);
-  //       committeeMember.person = person;
-  //     } catch (error) {
-  //       console.error(`Error fetching person details for committee member ${committeeMember.id}:`, error);
-  //       throw error;
-  //     }
-  //   }
-  // }
 }
