@@ -1,6 +1,6 @@
 // FoundingMember.ts
 
-import { Person } from "./Person";
+import { Person } from "@/models/Person";
 
 export interface FoundingMember {
   id: string;

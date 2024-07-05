@@ -1,4 +1,4 @@
-import { PersonImage } from "@/services/models/PersonImage";
+import { PersonImage } from "@/models/PersonImage";
 
 export interface Person {
   id: string;

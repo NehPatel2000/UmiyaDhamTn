@@ -1,15 +1,15 @@
-<script setup>
+<script lang="ts" setup>
 import { onBeforeMount, ref } from "vue";
-import { CommitteeMemberService } from "../services/CommitteeMemberService";
-import MemberCard from "../components/MemberCard.vue";
-import CommitteeMember from "../services/models/CommitteeMember"; // Adjust path as needed
+import { CommitteeMemberService } from "@/services/CommitteeMemberService";
+import MemberCard from "@/components/MemberCard.vue";
+import { CommitteeMember } from "@/models/CommitteeMember";
 
-const committeeList = ref([]);
-
+const committeeList = ref<CommitteeMember[]>([]); // Specify the type explicitly
+const committeeMemberService = new CommitteeMemberService();
 onBeforeMount(async () => {
   try {
     // Fetch committee members data
-    committeeList.value = await CommitteeMemberService.getCommitteeMembers();
+    committeeList.value = await committeeMemberService.getCommitteeMembers();
     console.log(committeeList.value); // Verify fetched data
   } catch (error) {
     console.error("Error fetching committee members:", error);
@@ -18,25 +18,18 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <q-page class="flex flex-wrap">
+  <q-page class="flex q-pa-none q-ma-md q-gutter-sm">
     <q-toolbar>
       <q-toolbar-title> Executive Committee:</q-toolbar-title>
     </q-toolbar>
 
     <member-card
       v-for="member in committeeList"
-      :key="member.person.name + member.position"
-      :name="member.person.firstName + ' ' + member.person.lastName"
+      :key="member.id"
+      :person="member.person"
       :position="member.position"
-      class="q-ma-sm"
     />
   </q-page>
 </template>
 
-<style scoped>
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-</style>
+<style scoped></style>

@@ -9,7 +9,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require("quasar/wrappers");
-
+const path = require("path");
 module.exports = configure(function (/* ctx */) {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -19,7 +19,9 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [],
-
+    vite: {
+      plugins: [],
+    },
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
 
@@ -81,6 +83,7 @@ module.exports = configure(function (/* ctx */) {
           },
         },
       },
+      open: false,
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework

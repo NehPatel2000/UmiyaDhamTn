@@ -1,32 +1,26 @@
-import axios from "axios";
-import CommitteeMember from "@/services/models/CommitteeMember";
+import { CommitteeMember } from "@/models/CommitteeMember";
+import { api } from "@/boot/axios"; // Ensure the default export is imported correctly
 
 export class CommitteeMemberService {
-  private static readonly BASE_URL = "/api/CommitteeMember";
+  private readonly successStatus = 200;
+  private readonly baseUrl = "/CommitteeMember";
 
   // Fetch all committee members
-  static async getCommitteeMembers(): Promise<CommitteeMember[]> {
+  getCommitteeMembers = async (): Promise<CommitteeMember[]> => {
     try {
-      const response = await axios.get<CommitteeMember[]>(this.BASE_URL);
+      console.log("Fetching committee members");
+      const response = await api.get<CommitteeMember[]>(this.baseUrl);
+
+      if (response.status !== this.successStatus) {
+        console.error("Error retrieving committee members");
+        return []; // Return an empty array on error
+      }
+
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching committee members:", error);
-      throw error;
+      return []; // Return an empty array on error
     }
-  }
-
-  // Fetch a single committee member by ID
-  static async getCommitteeMemberById(
-    id: string
-  ): Promise<CommitteeMember | null> {
-    try {
-      const response = await axios.get<CommitteeMember>(
-        `${this.BASE_URL}/${id}`
-      );
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching committee member with ID ${id}:`, error);
-      throw error;
-    }
-  }
+  };
 }

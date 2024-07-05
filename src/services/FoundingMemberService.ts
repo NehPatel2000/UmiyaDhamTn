@@ -1,5 +1,5 @@
 import axios from "axios";
-import FoundingMember from "@/services/models/FoundingMember";
+import { FoundingMember } from "@/models/FoundingMember";
 
 export class FoundingMemberService {
   private static readonly BASE_URL = "/api/FoundingMember";

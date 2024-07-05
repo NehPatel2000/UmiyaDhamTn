@@ -1,35 +1,32 @@
-<script setup>
-import { defineProps } from "vue";
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
+import { Person } from "@/models/Person";
+import PersonCard from "@/components/PersonCard.vue";
+
 const defaultProfileIcon = "src/assets/defaultProfileIcon.png";
-const props = defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  imgLink: {
-    type: String,
-    required: false,
-  },
-  position: {
-    type: String,
-    required: true,
-  },
+const props = defineProps<{ person: Person; position: string }>();
+const showProfile = ref(false);
+onMounted(() => {
+  console.log("personProfile.value");
 });
 </script>
 
 <template>
-  <q-card class="custom-card">
+  <q-card
+    class="custom-card"
+    @click.stop="showProfile = true"
+  >
     <q-card-section class="image-section">
       <q-img
-        :src="imgLink ? imgLink : defaultProfileIcon"
-        :alt="name"
+        :alt="props.person.firstName"
+        :src="defaultProfileIcon"
         class="image"
       />
     </q-card-section>
     <q-card-section>
       <div class="q-pa-sm text-center">
         <div class="name">
-          {{ name }}
+          {{ props.person.firstName + " " + props.person.lastName }}
         </div>
         <q-separator color="red" />
         <div class="position">
@@ -38,6 +35,9 @@ const props = defineProps({
       </div>
     </q-card-section>
   </q-card>
+  <q-dialog v-model="showProfile">
+    <person-card :person="props.person" />
+  </q-dialog>
 </template>
 
 <style scoped>
@@ -69,10 +69,13 @@ const props = defineProps({
   height: 150px;
   object-fit: cover;
 }
+
 .name {
 }
+
 .position {
 }
+
 .text-center {
   text-align: center;
 }
