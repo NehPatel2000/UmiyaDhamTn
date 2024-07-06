@@ -1,6 +1,6 @@
-<script setup>
-import TopNavBar from "components/TopNavBar.vue";
-import BottomNavBar from "components/BottomNavBar.vue";
+<script lang="ts" setup>
+import TopNavBar from "@/components/TopNavBar.vue";
+import BottomNavBar from "@/components/BottomNavBar.vue";
 </script>
 
 <template>

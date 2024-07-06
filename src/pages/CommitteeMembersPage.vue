@@ -4,13 +4,11 @@ import { CommitteeMemberService } from "@/services/CommitteeMemberService";
 import MemberCard from "@/components/MemberCard.vue";
 import { CommitteeMember } from "@/models/CommitteeMember";
 
-const committeeList = ref<CommitteeMember[]>([]); // Specify the type explicitly
+const committeeList = ref<CommitteeMember[]>([]);
 const committeeMemberService = new CommitteeMemberService();
 onBeforeMount(async () => {
   try {
-    // Fetch committee members data
     committeeList.value = await committeeMemberService.getCommitteeMembers();
-    console.log(committeeList.value); // Verify fetched data
   } catch (error) {
     console.error("Error fetching committee members:", error);
   }
@@ -18,17 +16,18 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <q-page class="flex q-pa-none q-ma-md q-gutter-sm">
-    <q-toolbar>
-      <q-toolbar-title> Executive Committee:</q-toolbar-title>
-    </q-toolbar>
-
-    <member-card
-      v-for="member in committeeList"
-      :key="member.id"
-      :person="member.person"
-      :position="member.position"
-    />
+  <q-page class="q-ma-md q-gutter-lg">
+    <label>
+      <q-toolbar-title>Executive Committee:</q-toolbar-title>
+    </label>
+    <q-card-section class="flex wrap q-ma-none q-gutter-sm">
+      <member-card
+        v-for="member in committeeList"
+        :key="member.id"
+        :person="member.person"
+        :position="member.position"
+      />
+    </q-card-section>
   </q-page>
 </template>
 

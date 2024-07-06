@@ -60,11 +60,9 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   height: 150px;
-  padding-bottom: 0;
 }
 
-.image,
-.icon {
+.image {
   width: 150px;
   height: 150px;
   object-fit: cover;
